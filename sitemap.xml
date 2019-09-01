@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://bhongjun.com/categories/index.html</loc>
+    
+    <lastmod>2019-09-01T07:32:26.340Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://bhongjun.com/2019/manner/</loc>
     
-    <lastmod>2019-09-01T07:29:34.347Z</lastmod>
+    <lastmod>2019-09-01T07:32:22.378Z</lastmod>
     
   </url>
   
@@ -19,13 +26,6 @@
     <loc>https://bhongjun.com/tags/index.html</loc>
     
     <lastmod>2019-09-01T07:28:47.084Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://bhongjun.com/categories/index.html</loc>
-    
-    <lastmod>2019-09-01T07:28:29.776Z</lastmod>
     
   </url>
   

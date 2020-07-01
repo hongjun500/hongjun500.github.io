@@ -239,4 +239,181 @@ description: 关于鸿钧这个名字的由来 -->
         <tag>Java</tag>
       </tags>
   </entry>
+  <entry>
+    <title>java基础-集合</title>
+    <url>/2020/07/02/java%E5%9F%BA%E7%A1%80-%E9%9B%86%E5%90%88/</url>
+    <content><![CDATA[<p>Java基础-集合</p>
+<p>java集合框架图</p>
+<p><img src="https://img.bhongjun.com/jihe_body1.png" alt=""></p>
+<p>如上图可以看出java集合可以分为Collection和Map两大接口</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">*</span> <span class="string">@see     Set</span></span><br><span class="line"><span class="meta">*</span> <span class="string">@see     List</span></span><br><span class="line"><span class="meta">*</span> <span class="string">@see     Map</span></span><br><span class="line"><span class="meta">*</span> <span class="string">@see     SortedSet</span></span><br><span class="line"><span class="meta">*</span> <span class="string">@see     SortedMap</span></span><br><span class="line"><span class="meta">*</span> <span class="string">@see     HashSet</span></span><br><span class="line"><span class="meta">*</span> <span class="string">@see     TreeSet</span></span><br><span class="line"><span class="meta">*</span> <span class="string">@see     ArrayList</span></span><br><span class="line"><span class="meta">*</span> <span class="string">@see     LinkedList</span></span><br><span class="line"><span class="meta">*</span> <span class="string">@see     Vector</span></span><br><span class="line"><span class="meta">*</span> <span class="string">@see     Collections</span></span><br><span class="line"><span class="meta">*</span> <span class="string">@see     Arrays</span></span><br><span class="line"><span class="meta">*</span> <span class="string">@see     AbstractCollection</span></span><br><span class="line"><span class="meta">*</span> <span class="string">@since 1.2</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Iterable</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; </span>&#123;</span><br></pre></td></tr></table></figure>
+
+<p>常用的实现类有 <strong>ArrayList</strong><code>、</code><strong>LinkedList</strong><code>、</code><strong>HashSet</strong><code>以及</code><strong>HashMap</strong></p>
+<ol>
+<li><p>ArrayList</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt;</span></span><br><span class="line"><span class="class">        <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;, <span class="title">RandomAccess</span>, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">8683452581122892189L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Default initial capacity.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_CAPACITY = <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>ArrayList的初始容量为10；但是它的容量可以动态增长；<strong>当添加元素达到容量上限时会自动扩容会原始容量的1.5倍</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List arrayList = <span class="keyword">new</span> ArrayList();无参构造实例化;初始容量值<span class="number">10</span>;</span><br><span class="line">List arrayList1 = <span class="keyword">new</span> ArrayList(<span class="number">100</span>);初始容量为<span class="number">100</span>;</span><br></pre></td></tr></table></figure>
+
+<p>如上也可以手动初始化容量</p>
+<p>常用方法：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>boolean add(E e)</td>
+<td>将元素插入到集合的末尾</td>
+</tr>
+<tr>
+<td>void add(int Index, E element)</td>
+<td>将元素插入到指定索引位置，原先索引位置后面的元素依次向后移动</td>
+</tr>
+<tr>
+<td>void  clear( )</td>
+<td>清空集合中所有元素</td>
+</tr>
+<tr>
+<td>boolean  contains(Object  o)</td>
+<td>判断集合中是否包含此指定元素，一般用于去除重复元素(Set无重复!!!)</td>
+</tr>
+<tr>
+<td>boolean  remove(Object  o)</td>
+<td>删除指定元素</td>
+</tr>
+<tr>
+<td>E  remove(int  index)</td>
+<td>删除指定索引位置的元素</td>
+</tr>
+<tr>
+<td>E  set(int  index,  E element)</td>
+<td>将元素替换到指定索引位置，和add方法有区别</td>
+</tr>
+<tr>
+<td>E  get(int index);</td>
+<td>获取指定索引位置的元素，比较常用</td>
+</tr>
+<tr>
+<td>boolean  isEmpty( )</td>
+<td>判断集合是否为空</td>
+</tr>
+<tr>
+<td>int  size();</td>
+<td>获取集合中元素个数</td>
+</tr>
+<tr>
+<td>Object[ ]  toArray( )</td>
+<td>获取集合中所有元素组成的对象数组</td>
+</tr>
+<tr>
+<td>List<E> subList(int fromIndex, int toIndex)</td>
+<td>获取集合中起止位置元素所组成的子列表(<strong>不包含末尾位置</strong>)</td>
+</tr>
+</tbody></table>
+<p><em>由于ArrayList的抽象父类(AbstractCollection)重写了toString方法,因此可以直接以集合名的方式直观的获取集合中的所有元素</em></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Iterator&lt;E&gt; it = iterator();</span><br><span class="line">        <span class="keyword">if</span> (! it.hasNext())</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"[]"</span>;</span><br><span class="line"></span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        sb.append(<span class="string">'['</span>);</span><br><span class="line">        <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">            E e = it.next();</span><br><span class="line">            sb.append(e == <span class="keyword">this</span> ? <span class="string">"(this Collection)"</span> : e);</span><br><span class="line">            <span class="keyword">if</span> (! it.hasNext())</span><br><span class="line">                <span class="keyword">return</span> sb.append(<span class="string">']'</span>).toString();</span><br><span class="line">            sb.append(<span class="string">','</span>).append(<span class="string">' '</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>可以直观的看出使用了迭代器的方式</strong></p>
+<p>2.Iterator </p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>boolean hasNext()</td>
+<td>如果仍有元素可以迭代，则返回 true</td>
+</tr>
+<tr>
+<td>E next()</td>
+<td>返回迭代的下一个元素</td>
+</tr>
+<tr>
+<td>void remove()</td>
+<td>从迭代器指向的 collection 中移除迭代器返回的最后一个元素</td>
+</tr>
+</tbody></table>
+<p><strong>迭代器的remover方法还有很大考究门道，过段时间再细究</strong></p>
+<p>3.LinkedList</p>
+<p>ArrayList 类常用方法与 List 接口基本相同，<strong>LinkedList 类则比 List 接口多了一些方便操作 头元素和尾元素的方法</strong></p>
+<p>常用方法如下：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void  addFirst(E e)</td>
+<td>把新元素插入到列表中的最前位置</td>
+</tr>
+<tr>
+<td>void  addLast(E e)</td>
+<td>与上与之相反</td>
+</tr>
+<tr>
+<td>E  getFirst( )</td>
+<td>获取列表中最前位置的元素</td>
+</tr>
+<tr>
+<td>E  getLast( )</td>
+<td>与上与之相反</td>
+</tr>
+<tr>
+<td>E  peek( )</td>
+<td>获取列表中最前位置的元素，但此元素仍保留在列表中</td>
+</tr>
+<tr>
+<td>E  peekFirst( )</td>
+<td>获取列表中最前位置的元素，但此元素仍保留在列表中 E</td>
+</tr>
+<tr>
+<td>E  peekLast(</td>
+<td>与上与之相反</td>
+</tr>
+<tr>
+<td>E  poll( )</td>
+<td>获取列表中最前位置的元素，同时把此元素从列表中删除</td>
+</tr>
+<tr>
+<td>E  pollFirst( )</td>
+<td>获取列表中最前位置的元素，同时把此元素从列表中删除</td>
+</tr>
+<tr>
+<td>E  pollLast(</td>
+<td>获取列表中最后位置的元素，同时把此元素从列表中删除</td>
+</tr>
+<tr>
+<td>void  push(E e)</td>
+<td>把指定元素压入到栈顶</td>
+</tr>
+<tr>
+<td>E  pop( )</td>
+<td>从栈中弹出栈顶元素</td>
+</tr>
+</tbody></table>
+<p><strong>==ArrayList 的内部实现是基于内部数组 Object[]，类似于可变长的数组。LinkedList 的内部 实现是基于一组连接的记录，类似于一个链表结构。 在 ArrayList 的前面或中间插入数据时，必须将其后的所有数据相应的后移，花费较多时间，所以，当程序添加元素主要是在后面，并且需要随机地访问其中的元素时，优先使用 ArrayList 会得到比较好的性能;==</strong></p>
+<p>==<strong>访问 LinkedList 中的某个元素时，就必须从链表的一端开始沿着连接方向一个一个元素地 去查找，直到找到所需的元素为止，但在添加元素到原有元素中间时效率很高，所以，当程序需要经常在指定位置添加元素，并且按照顺序访问其中的元素时，优先使用 LinkedList(随机访问的效率比较低)</strong>==</p>
+<p>未完待记录…</p>
+]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
 </search>

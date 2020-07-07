@@ -346,6 +346,20 @@ description: 关于鸿钧这个名字的由来 -->
 </tr>
 </tbody></table>
 <p><strong>迭代器的remover方法还有很大考究门道，过段时间再细究</strong></p>
+<p>2020-07-08更新</p>
+<p>先贴一段代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        list.add(<span class="string">"烬"</span>);</span><br><span class="line">        list.add(<span class="string">"李青"</span>);</span><br><span class="line">        list.add(<span class="string">"劫"</span>);</span><br><span class="line">        list.add(<span class="string">"盖伦"</span>);</span><br><span class="line">        System.out.println(<span class="string">"list-----"</span>+list);</span><br><span class="line">        Iterator&lt;String&gt; iterator = list.iterator();</span><br><span class="line">        List&lt;String&gt; list1 = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">while</span> (iterator.hasNext())&#123;</span><br><span class="line">            System.out.println(<span class="string">"iterator.next()---"</span>+iterator.next());</span><br><span class="line">            iterator.remove();</span><br><span class="line">            list1.add(iterator.next());</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"list1-------"</span>+list1);</span><br><span class="line">        System.out.println(<span class="string">"-----------------------------------"</span>);</span><br><span class="line">        System.out.println(list);</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">list-----[烬, 李青, 劫, 盖伦]</span><br><span class="line">iterator.next()---烬</span><br><span class="line">iterator.next()---劫</span><br><span class="line">list1-------[李青, 盖伦]</span><br><span class="line">-----------------------------------</span><br><span class="line">[李青, 盖伦]</span><br></pre></td></tr></table></figure>
+
+<p><strong>每次调用next()方法，都会得到一个值，那么这个迭代的过程就会相应向后走一步</strong>(打个可能不是很恰当的比喻，数一一个队伍，数了一个之后，相应的会向后面移动一步。。。)上面的这段代码可以看成是首先用next();数了 最前面的”烬”, 打印的结果便是 “烬” ， 然后调用remove();把这个 “烬” 移除队伍，那么此时队伍就变成了[李青, 劫, 盖伦]，接着判断是否还可以数，—-&gt;(  [李青, 劫, 盖伦] 可以继续数—-&gt;)执行，接着数了”李青”并把它放到另一个队伍中去(向后走一步)，再判断是否还可以数，—&gt;(  [李青, 劫, 盖伦] 可以继续数—-&gt;)  执行，此时注意”李青”已经数过了，下一个数的就是”劫”，打印的结果也是劫，接着remove();把这个 “劫” 移除队伍;  这时队伍变成了[李青, 盖伦]再最后数了“盖伦”并同时也将其放到另一个队伍中去，综上队伍已经全部数完(方法不再执行)；那么最后原先的队伍就从[烬, 李青, 劫, 盖伦]变成了[李青, 盖伦]，相应的另一个队伍里也是[李青, 盖伦]。。。</p>
+<p><strong>此处用这个放到另一个队伍的比喻不是很恰当，但目的是为了表明这个next();执行的效果—&gt;迭代的过程会相应向后走一步</strong></p>
+<p>千人千面，每个人的理解都各不相同，但是最后的明白的都是同一个道理（多搞两把代码打上断点走一遍）</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">next();和remove();是相互依存的，调用remove();之前必须先调用next();否则会抛出java.lang.IllegalStateException</span><br></pre></td></tr></table></figure>
+
+
+
 <p>3.LinkedList</p>
 <p>ArrayList 类常用方法与 List 接口基本相同，<strong>LinkedList 类则比 List 接口多了一些方便操作 头元素和尾元素的方法</strong></p>
 <p>常用方法如下：</p>
@@ -405,8 +419,8 @@ description: 关于鸿钧这个名字的由来 -->
 <td>从栈中弹出栈顶元素</td>
 </tr>
 </tbody></table>
-<p><strong>==ArrayList 的内部实现是基于内部数组 Object[]，类似于可变长的数组。LinkedList 的内部 实现是基于一组连接的记录，类似于一个链表结构。 在 ArrayList 的前面或中间插入数据时，必须将其后的所有数据相应的后移，花费较多时间，所以，当程序添加元素主要是在后面，并且需要随机地访问其中的元素时，优先使用 ArrayList 会得到比较好的性能;==</strong></p>
-<p>==<strong>访问 LinkedList 中的某个元素时，就必须从链表的一端开始沿着连接方向一个一个元素地 去查找，直到找到所需的元素为止，但在添加元素到原有元素中间时效率很高，所以，当程序需要经常在指定位置添加元素，并且按照顺序访问其中的元素时，优先使用 LinkedList(随机访问的效率比较低)</strong>==</p>
+<p><strong>ArrayList 的内部实现是基于内部数组 Object[]，类似于可变长的数组。LinkedList 的内部 实现是基于一组连接的记录，类似于一个链表结构。 在 ArrayList 的前面或中间插入数据时，必须将其后的所有数据相应的后移，花费较多时间，所以，当程序添加元素主要是在后面，并且需要随机地访问其中的元素时，优先使用 ArrayList 会得到比较好的性能;</strong></p>
+<p><strong>访问 LinkedList 中的某个元素时，就必须从链表的一端开始沿着连接方向一个一个元素地 去查找，直到找到所需的元素为止，但在添加元素到原有元素中间时效率很高，所以，当程序需要经常在指定位置添加元素，并且按照顺序访问其中的元素时，优先使用 LinkedList(随机访问的效率比较低)</strong></p>
 <p>未完待记录…</p>
 ]]></content>
       <categories>

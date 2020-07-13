@@ -421,6 +421,48 @@ description: 关于鸿钧这个名字的由来 -->
 </tbody></table>
 <p><strong>ArrayList 的内部实现是基于内部数组 Object[]，类似于可变长的数组。LinkedList 的内部 实现是基于一组连接的记录，类似于一个链表结构。 在 ArrayList 的前面或中间插入数据时，必须将其后的所有数据相应的后移，花费较多时间，所以，当程序添加元素主要是在后面，并且需要随机地访问其中的元素时，优先使用 ArrayList 会得到比较好的性能;</strong></p>
 <p><strong>访问 LinkedList 中的某个元素时，就必须从链表的一端开始沿着连接方向一个一个元素地 去查找，直到找到所需的元素为止，但在添加元素到原有元素中间时效率很高，所以，当程序需要经常在指定位置添加元素，并且按照顺序访问其中的元素时，优先使用 LinkedList(随机访问的效率比较低)</strong></p>
+<p>4.HashSet</p>
+<p>HashSet 类是将元素存储在散列表中，适合用于不需要有序的元素序列，并能实现快速查 找特定元素。如果想要提高 HashSet 的性能，可以指定 HashSet 中元素的个数；如果大约知道 HashSet 中最终会插入多少元素，可以把元素个数设置为其值的 1.5 倍；如果元素过多，将导 致 HashSet 检索性能下降</p>
+<p>HashSet();方法的源码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashSet</span>&lt;<span class="title">E</span>&gt;</span></span><br><span class="line"><span class="class">    <span class="keyword">extends</span> <span class="title">AbstractSet</span>&lt;<span class="title">E</span>&gt;</span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = -<span class="number">5024744406713321676L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">transient</span> HashMap&lt;E,Object&gt; map;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Dummy value to associate with an Object in the backing Map</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Object PRESENT = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Constructs a new, empty set; the backing &lt;tt&gt;HashMap&lt;/tt&gt; instance has</span></span><br><span class="line"><span class="comment">     * default initial capacity (16) and load factor (0.75).</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">HashSet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+<p>以上只是无参构造方法HashSet();其后还有一些有参构造方法，无一例外都是通过 new HashMap()的方式得到的</p>
+<p>HashSet的常用方法有如下：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>boolean add(E e)</td>
+<td>如果指定的元素尚不存在，则将其添加到该集合中</td>
+</tr>
+<tr>
+<td>boolean contains(Object o)</td>
+<td>如果此集合包含指定的元素，则返回 true，否则返回 false</td>
+</tr>
+<tr>
+<td>boolean isEmpty()</td>
+<td>如果此集合不包含任何元素，则返回 true，否则返回 false</td>
+</tr>
+<tr>
+<td>Iterator<E> iterator()</td>
+<td>返回此集合中元素的迭代器</td>
+</tr>
+<tr>
+<td>boolean remove(Object o)</td>
+<td>从该集合中删除指定的元素</td>
+</tr>
+<tr>
+<td>int size()</td>
+<td>返回此集合中的元素数量</td>
+</tr>
+</tbody></table>
+<p>就常用方法而言，Set 接口与 Collection 接口基本一致</p>
+<p>HashSet类里并无获取元素的方法，只能通过Set里面的Iterator 获取</p>
+<p>所有的Collection都实现了 <code>Iterator</code> 接口</p>
 <p>未完待记录…</p>
 ]]></content>
       <categories>

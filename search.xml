@@ -463,6 +463,69 @@ description: 关于鸿钧这个名字的由来 -->
 <p>就常用方法而言，Set 接口与 Collection 接口基本一致</p>
 <p>HashSet类里并无获取元素的方法，只能通过Set里面的Iterator 获取</p>
 <p>所有的Collection都实现了 <code>Iterator</code> 接口</p>
+]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>map</title>
+    <url>/2020/07/14/map/</url>
+    <content><![CDATA[<h6>
+Map 接口是映射类的顶层接口，SortedMap 接口提供了排序功能，最经常使用到的已实现
+Map 接口的类有 HashMap 和 TreeMap。HashMap 对“键”进行散列；TreeMap 实现了 SortedMap
+接口，通过用排序方法根据元素的键的排序结果把元素组织到树中。
+</h6>
+
+<p>1.HashMap</p>
+<p>常用方法：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void clear()</td>
+<td>清空所有元素</td>
+</tr>
+<tr>
+<td>boolean containsKey(Object key)</td>
+<td>判断是否包含指定的键</td>
+</tr>
+<tr>
+<td>boolean containsValue(Object value)</td>
+<td>判断是否包含指定的值</td>
+</tr>
+<tr>
+<td>Collection values( )</td>
+<td>获得所有值所组成的集合</td>
+</tr>
+<tr>
+<td>Set keySet( )</td>
+<td>获得键所组成的集合</td>
+</tr>
+<tr>
+<td>Set&gt; entrySet( )</td>
+<td>获得映射组成的集合(与values不同)</td>
+</tr>
+<tr>
+<td>V get(Object key)</td>
+<td>获得指定键对应的值(如果没有则返回一个null)</td>
+</tr>
+<tr>
+<td>V put(K key, V value)</td>
+<td>建立指定键与值之间的关联</td>
+</tr>
+<tr>
+<td>V remove(Object key)</td>
+<td>如果存在，则从此映射中删除指定键的映射，并返回对应的值；反之则返回null</td>
+</tr>
+</tbody></table>
 <p>未完待记录…</p>
 ]]></content>
       <categories>

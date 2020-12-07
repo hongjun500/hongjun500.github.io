@@ -191,7 +191,7 @@ description: 关于鸿钧这个名字的由来 -->
     <content><![CDATA[<h3>Java基础</h3>
 
 <p><strong>String类</strong></p>
-<p><code>String</code> 字符串常量</p>
+<p>1.<code>String</code> 字符串常量</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">String</span></span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String str = <span class="string">"hongjun500"</span>;</span><br><span class="line"><span class="keyword">int</span> length = str.length();</span><br></pre></td></tr></table></figure>
@@ -231,6 +231,24 @@ description: 关于鸿钧这个名字的由来 -->
 <p>字符串反转</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">strBuilder.reverse();</span><br></pre></td></tr></table></figure>
 
+<p>3.<code>StringBuff</code> 类</p>
+<p><code>StringBuilder</code> 和 <code>StringBuilder</code> 一样都是字符串变量，方法大体上都是相同的</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">StringBuilder</span></span></span><br><span class="line"><span class="class">    <span class="keyword">extends</span> <span class="title">AbstractStringBuilder</span></span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span>, <span class="title">CharSequence</span></span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">StringBuffer</span></span></span><br><span class="line"><span class="class">   <span class="keyword">extends</span> <span class="title">AbstractStringBuilder</span></span></span><br><span class="line"><span class="class">   <span class="keyword">implements</span> <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span>, <span class="title">CharSequence</span></span></span><br></pre></td></tr></table></figure>
+
+<p>如上这两个都是继承了相同的抽象类和并且实现了相同的接口，但是需要注意它们各自重写父类的方法是不一样的</p>
+<p>例如常用apped()方法：</p>
+<p>StringBuilder: </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> StringBuilder <span class="title">append</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.append(str);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是直接调用了父类的append方法</p>
+<p>StringBuffer:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> StringBuffer <span class="title">append</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">        toStringCache = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">super</span>.append(str);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">// private transient char[] toStringCache;</span></span><br></pre></td></tr></table></figure>
+
+<p>有两处不一样，一是加了和线程有关的 <code>synchronized</code> 关键字，二是有一个字符数组的缓存，每次修改之后就把之前的清掉</p>
+<p>通过以上可以明白为啥总是会有说（用String操作少量的数据； StringBuilder操作大量数据；StringBuffer操作多线程下的大量数据）。</p>
+<p>关于多线程的一些东西，鉴于工作中还没有一些实际运用的场景(多线程举足轻重)，仅仅是看文章了解知其然而不知其所以然，此处暂时不做阐述。。。</p>
 ]]></content>
       <categories>
         <category>编程</category>

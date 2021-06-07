@@ -615,7 +615,7 @@ Map 接口的类有 HashMap 和 TreeMap。HashMap 对“键”进行散列；Tre
 </li>
 <li><p>green是健康的状态，对外可以提供读写服务；</p>
 </li>
-<li><p>red没有启动成功，无法对外提供服务</p>
+<li><p>red具有部分功能，需要尽快修复</p>
 </li>
 </ul>
 <p>_cat/nodes 查看节点数</p>

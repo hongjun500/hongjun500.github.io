@@ -646,7 +646,9 @@ Map 接口的类有 HashMap 和 TreeMap。HashMap 对“键”进行散列；Tre
 <li>Manage模块下Data下Index Management可查看对应节点中索引的数据清空</li>
 <li>Dev Tools - Console可操作elasticsearch中的数据</li>
 </ul>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=69827&auto=1&height=66"></iframe>]]></content>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=69827&auto=1&height=66"></iframe>
+
+]]></content>
       <categories>
         <category>分布式搜索引擎中间件</category>
       </categories>
